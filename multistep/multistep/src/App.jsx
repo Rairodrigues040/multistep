@@ -21,11 +21,17 @@ const formTemplate = {
 
 const App = () => {
 
-  const [data, setData] = useState()
+  const [data, setData] = useState(formTemplate)
+
+  const updateFieldHandler = (key, value) => {
+    setData((prev) => {
+      return { ...prev, [key]: value }
+    })
+  }
 
   const formComponents = [
-    <UserForm data={data} />,
-    <ReviewForm data={data} />,
+    <UserForm data={data} updateFieldHandler={updateFieldHandler} />,
+    <ReviewForm data={data} updateFieldHandler={updateFieldHandler} />,
     <Thanks data={data} />
   ]
   // currentStep paga o índice
